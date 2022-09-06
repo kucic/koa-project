@@ -13,6 +13,7 @@ import mongoose from 'mongoose';
 // api 
 // const api = require('./api');
 import api from './api/index.js';
+import jwtMiddleware from './lib/jwtMiddleware.js';
 
 
 import * as fakeData from './util/createFakeData.js';
@@ -39,6 +40,8 @@ router.use('/api', api.routes()); // api router set
 
 // router 적용전에 bodyparser 적용
 app.use(bodyParser());
+
+app.use(jwtMiddleware);
 
 // app 인스턴스에 라우터 적용
 app.use(router.routes()).use(router.allowedMethods());
